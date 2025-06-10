@@ -1,5 +1,4 @@
 import { queryParams, type QueryParams } from './../../../../../wayfinder'
-
 /**
 * @see \App\Http\Controllers\Auth\ConfirmablePasswordController::show
  * @see app/Http/Controllers/Auth/ConfirmablePasswordController.php:18

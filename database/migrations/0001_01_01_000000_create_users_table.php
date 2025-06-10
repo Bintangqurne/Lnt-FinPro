@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->integer('money')->default(0); // Tambahkan kolom money
+            $table->string('role')->default('user'); // 'admin', 'user'
+            $table->decimal('money', 15, 2)->default(0.00); // Kolom untuk saldo uang pengguna
             $table->rememberToken();
             $table->timestamps();
         });
@@ -30,7 +31,8 @@ return new class extends Migration
 
         Schema::create('sessions', function (Blueprint $table) {
             $table->string('id')->primary();
-            $table->foreignId('user_id')->nullable()->index();
+            $table->uuid('user_id')->nullable()->index();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade'); // Opsional: foreign key
             $table->string('ip_address', 45)->nullable();
             $table->text('user_agent')->nullable();
             $table->longText('payload');
@@ -43,8 +45,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
-        Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
+        Schema::dropIfExists('password_reset_tokens');
+        Schema::dropIfExists('users');
     }
 };

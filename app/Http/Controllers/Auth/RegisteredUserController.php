@@ -20,7 +20,7 @@ class RegisteredUserController extends Controller
      */
     public function create(): Response
     {
-        return Inertia::render('auth/register');
+        return Inertia::render('Auth/Register'); // Pastikan path view Inertia benar
     }
 
     /**
@@ -34,19 +34,26 @@ class RegisteredUserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'money' => 'nullable|numeric|min:0|max:1000000',
+            'money' => 'nullable|numeric|min:0|max:1000000', // Validasi untuk saldo awal
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => 'user', // Otomatis set role ke 'user'
+            'money' => $request->money ?? 0.00, // Set saldo, default 0 jika tidak diisi
         ]);
 
         event(new Registered($user));
 
         Auth::login($user);
 
-        return to_route('dashboard');
+        // Pengalihan berdasarkan peran setelah registrasi (opsional di sini,
+        // biasanya login yang menangani)
+        if ($user->isAdmin()) {
+            return redirect()->route('admin.dashboard'); // Ganti dengan rute admin Anda
+        }
+        return redirect()->route('dashboard'); // Atau rute default setelah registrasi
     }
 }

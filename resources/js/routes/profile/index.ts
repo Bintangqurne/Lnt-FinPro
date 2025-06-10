@@ -1,5 +1,4 @@
 import { queryParams, type QueryParams } from './../../wayfinder'
-
 /**
 * @see \App\Http\Controllers\Settings\ProfileController::edit
  * @see app/Http/Controllers/Settings/ProfileController.php:19

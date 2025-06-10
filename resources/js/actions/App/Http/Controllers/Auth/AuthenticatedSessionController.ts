@@ -1,5 +1,4 @@
 import { queryParams, type QueryParams } from './../../../../../wayfinder'
-
 /**
 * @see \App\Http\Controllers\Auth\AuthenticatedSessionController::create
  * @see app/Http/Controllers/Auth/AuthenticatedSessionController.php:19
@@ -94,7 +93,7 @@ store.post = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 
 /**
 * @see \App\Http\Controllers\Auth\AuthenticatedSessionController::destroy
- * @see app/Http/Controllers/Auth/AuthenticatedSessionController.php:42
+ * @see app/Http/Controllers/Auth/AuthenticatedSessionController.php:50
  * @route '/logout'
  */
 export const destroy = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -112,7 +111,7 @@ destroy.definition = {
 
 /**
 * @see \App\Http\Controllers\Auth\AuthenticatedSessionController::destroy
- * @see app/Http/Controllers/Auth/AuthenticatedSessionController.php:42
+ * @see app/Http/Controllers/Auth/AuthenticatedSessionController.php:50
  * @route '/logout'
  */
 destroy.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -121,7 +120,7 @@ destroy.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
 
 /**
 * @see \App\Http\Controllers\Auth\AuthenticatedSessionController::destroy
- * @see app/Http/Controllers/Auth/AuthenticatedSessionController.php:42
+ * @see app/Http/Controllers/Auth/AuthenticatedSessionController.php:50
  * @route '/logout'
  */
 destroy.post = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {

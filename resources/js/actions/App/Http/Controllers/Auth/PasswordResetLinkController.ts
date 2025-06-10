@@ -1,5 +1,4 @@
 import { queryParams, type QueryParams } from './../../../../../wayfinder'
-
 /**
 * @see \App\Http\Controllers\Auth\PasswordResetLinkController::create
  * @see app/Http/Controllers/Auth/PasswordResetLinkController.php:17

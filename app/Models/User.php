@@ -2,47 +2,80 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Ramsey\Uuid\Uuid;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasUuids;
 
+    /**
+     * Indicates if the IDs are auto-incrementing.
+     *
+     * @var bool
+     */
     public $incrementing = false;
-    protected $keyType = 'string';
 
+    /**
+     * The "type" of the primary key ID.
+     *
+     * @var string
+     */
+    // protected $keyType = 'string'; // Sudah benar menggunakan UUIDs dengan HasUuids trait
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
     protected $fillable = [
         'name',
         'email',
         'password',
-        'money'
+        'role', // Ditambahkan
+        'money', // Ditambahkan
     ];
 
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    protected function casts(): array
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+        'money' => 'decimal:2', // Casting untuk money
+    ];
+
+    /**
+     * Check if the user has an admin role.
+     *
+     * @return bool
+     */
+    public function isAdmin(): bool
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        return $this->role === 'admin';
     }
 
-    // ✅ Inisialisasi UUID saat model dibuat
-    protected static function boot()
+    /**
+     * Check if the user has a user role.
+     *
+     * @return bool
+     */
+    public function isUser(): bool
     {
-        parent::boot();
-
-        static::creating(function ($model) {
-            if (empty($model->{$model->getKeyName()})) {
-                $model->{$model->getKeyName()} = (string) Uuid::uuid4();
-            }
-        });
+        return $this->role === 'user';
     }
 }

@@ -1,5 +1,4 @@
 import { queryParams, type QueryParams } from './../../../wayfinder'
-
 /**
 * @see \Illuminate\Routing\RedirectController::__invoke
  * @see vendor/laravel/framework/src/Illuminate/Routing/RedirectController.php:19

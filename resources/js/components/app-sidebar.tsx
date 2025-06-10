@@ -13,6 +13,11 @@ const mainNavItems: NavItem[] = [
         href: '/dashboard',
         icon: LayoutGrid,
     },
+    {
+        title: 'Cart',
+        href: '/cart',
+        icon: LayoutGrid,
+    },
 ];
 
 const footerNavItems: NavItem[] = [
@@ -38,6 +43,7 @@ export function AppSidebar() {
                             <Link href="/dashboard" prefetch>
                                 <AppLogo />
                             </Link>
+                            
                         </SidebarMenuButton>
                     </SidebarMenuItem>
                 </SidebarMenu>

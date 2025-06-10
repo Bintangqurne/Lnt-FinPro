@@ -1,5 +1,4 @@
 import { queryParams, type QueryParams } from './../../../../../wayfinder'
-
 /**
 * @see \App\Http\Controllers\Auth\VerifyEmailController::__invoke
  * @see app/Http/Controllers/Auth/VerifyEmailController.php:15

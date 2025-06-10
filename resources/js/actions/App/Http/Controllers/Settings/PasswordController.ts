@@ -1,5 +1,4 @@
 import { queryParams, type QueryParams } from './../../../../../wayfinder'
-
 /**
 * @see \App\Http\Controllers\Settings\PasswordController::edit
  * @see app/Http/Controllers/Settings/PasswordController.php:18

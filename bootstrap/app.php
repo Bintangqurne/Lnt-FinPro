@@ -21,6 +21,15 @@ return Application::configure(basePath: dirname(__DIR__))
             HandleInertiaRequests::class,
             AddLinkHeadersForPreloadedAssets::class,
         ]);
+
+        $middleware->alias([
+            'admin' => \App\Http\Middleware\AdminMiddleware::class, // <-- BARIS INI PENTING
+            // Tambahkan alias lain jika perlu
+        ]);
+
+        $middleware->validateCsrfTokens(except: [
+            '*' // <-- exclude this route
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
